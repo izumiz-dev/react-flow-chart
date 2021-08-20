@@ -1,6 +1,8 @@
 import * as React from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { v4 } from "uuid";
+import { get } from "lodash";
+import { customAlphabet } from "nanoid";
 import {
   IConfig,
   IOnCanvasClick,
@@ -88,7 +90,7 @@ export class CanvasWrapper extends React.Component<
       onDragCanvasStop,
       children,
       onCanvasClick,
-      onDeleteKey,
+      // onDeleteKey,
       onCanvasDrop,
       onZoomCanvas,
     } = this.props;
@@ -106,6 +108,7 @@ export class CanvasWrapper extends React.Component<
     };
 
     const doubleClickMode = config.readonly ? "zoomOut" : "zoomIn";
+    const nanoid = customAlphabet("1234567890abcdef", 6);
 
     return (
       <CanvasContext.Provider
@@ -142,12 +145,7 @@ export class CanvasWrapper extends React.Component<
                 children={children}
                 onClick={onCanvasClick}
                 tabIndex={0}
-                onKeyDown={(e: React.KeyboardEvent) => {
-                  // delete or backspace keys
-                  // if (e.keyCode === 46 || e.keyCode === 8) {
-                  //   onDeleteKey({ config })
-                  // }
-                }}
+                onKeyDown={(e: React.KeyboardEvent) => undefined}
                 onDrop={(e) => {
                   const data = JSON.parse(
                     e.dataTransfer.getData(REACT_FLOW_CHART)
@@ -162,7 +160,14 @@ export class CanvasWrapper extends React.Component<
                         x: relativeClientX / scale - position.x / scale,
                         y: relativeClientY / scale - position.y / scale,
                       },
-                      id: data.id || v4(),
+                      id:
+                        `${get(
+                          data,
+                          ["properties", "dndId"],
+                          "Use dndId"
+                        )}_${nanoid()}` ||
+                        data.id ||
+                        v4(),
                     });
                   }
                 }}
