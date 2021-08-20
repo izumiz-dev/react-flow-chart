@@ -1,6 +1,6 @@
 {
   "name": "@izumiz-dev/react-flow-chart",
-  "version": "0.0.14.1",
+  "version": "0.0.14.2",
   "description": "A flexible, stateless flow chart library for react.",
   "main": "src/index.js",
   "repository": {
