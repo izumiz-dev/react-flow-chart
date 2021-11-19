@@ -55,10 +55,10 @@ export const RegularLink = ({
       <path
         d={points}
         stroke={isHovered || isSelected ? "orange" : linkColor}
-        strokeWidth="20"
+        strokeWidth="12"
         fill="none"
         strokeLinecap="round"
-        strokeOpacity={isHovered ? 0.4 : isSelected ? 0.8 : 0}
+        strokeOpacity={isHovered ? 0.5 : isSelected ? 1 : 0}
         onMouseEnter={() => onLinkMouseEnter({ config, linkId: link.id })}
         onMouseLeave={() => onLinkMouseLeave({ config, linkId: link.id })}
         onClick={(e) => {
