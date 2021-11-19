@@ -1,15 +1,15 @@
-import * as React from 'react'
-import styled from 'styled-components'
-import { IConfig, IPort } from '../../'
+import * as React from "react";
+import styled from "styled-components";
+import { IConfig, IPort } from "../../";
 
 export interface IPortDefaultProps {
-  className?: string
-  config: IConfig
-  port: IPort
-  isSelected: boolean
-  isHovered: boolean
-  isLinkSelected: boolean
-  isLinkHovered: boolean
+  className?: string;
+  config: IConfig;
+  port: IPort;
+  isSelected: boolean;
+  isHovered: boolean;
+  isLinkSelected: boolean;
+  isLinkHovered: boolean;
 }
 
 const PortDefaultOuter = styled.div`
@@ -24,20 +24,25 @@ const PortDefaultOuter = styled.div`
   &:hover > div {
     background: cornflowerblue;
   }
-`
+`;
 
 const PortDefaultInner = styled.div<{ active: boolean }>`
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background:  ${(props) => props.active ? 'cornflowerblue' : 'grey' };
+  background: ${(props) => (props.active ? "cornflowerblue" : "grey")};
   cursor: pointer;
-`
+`;
 
-export const PortDefault = ({ isLinkSelected, isLinkHovered, config, className }: IPortDefaultProps) => (
+export const PortDefault = ({
+  isLinkSelected,
+  isLinkHovered,
+  config,
+  className,
+}: IPortDefaultProps) => (
   <PortDefaultOuter className={className}>
     <PortDefaultInner
       active={!config.readonly && (isLinkSelected || isLinkHovered)}
     />
   </PortDefaultOuter>
-)
+);

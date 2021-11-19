@@ -1,20 +1,27 @@
-import * as React from 'react'
-import { IConfig, ILink, IOnLinkClick, IOnLinkMouseEnter, IOnLinkMouseLeave, IPosition } from '../../../'
-import { getDirectional } from '../utils'
+import * as React from "react";
+import {
+  IConfig,
+  ILink,
+  IOnLinkClick,
+  IOnLinkMouseEnter,
+  IOnLinkMouseLeave,
+  IPosition,
+} from "../../../";
+import { getDirectional } from "../utils";
 
 export interface IArrowLinkProps {
-  className?: string
-  link: ILink
-  config: IConfig
-  linkColor: string
-  points: string
-  isHovered: boolean
-  isSelected: boolean
-  startPos: IPosition
-  endPos: IPosition
-  onLinkMouseEnter: IOnLinkMouseEnter
-  onLinkMouseLeave: IOnLinkMouseLeave
-  onLinkClick: IOnLinkClick
+  className?: string;
+  link: ILink;
+  config: IConfig;
+  linkColor: string;
+  points: string;
+  isHovered: boolean;
+  isSelected: boolean;
+  startPos: IPosition;
+  endPos: IPosition;
+  onLinkMouseEnter: IOnLinkMouseEnter;
+  onLinkMouseLeave: IOnLinkMouseLeave;
+  onLinkClick: IOnLinkClick;
 }
 
 export const ArrowLink = ({
@@ -33,24 +40,24 @@ export const ArrowLink = ({
 }: IArrowLinkProps) => {
   const { leftToRight, topToBottom, isHorizontal } = getDirectional(
     startPos,
-    endPos,
-  )
+    endPos
+  );
 
-  let markerKey = ''
+  let markerKey = "";
   if ((leftToRight && isHorizontal) || (topToBottom && !isHorizontal)) {
-    markerKey = 'markerEnd'
+    markerKey = "markerEnd";
   } else if ((!leftToRight && isHorizontal) || !isHorizontal) {
-    markerKey = 'markerStart'
+    markerKey = "markerStart";
   }
 
-  const marker = { [markerKey]: `url(#arrowHead-${linkColor})` }
+  const marker = { [markerKey]: `url(#arrowHead-${linkColor})` };
 
   return (
     <svg
       style={{
-        overflow: 'visible',
-        position: 'absolute',
-        cursor: 'pointer',
+        overflow: "visible",
+        position: "absolute",
+        cursor: "pointer",
         left: 0,
         right: 0,
       }}
@@ -87,10 +94,10 @@ export const ArrowLink = ({
         onMouseEnter={() => onLinkMouseEnter({ config, linkId: link.id })}
         onMouseLeave={() => onLinkMouseLeave({ config, linkId: link.id })}
         onClick={(e) => {
-          onLinkClick({ config, linkId: link.id })
-          e.stopPropagation()
+          onLinkClick({ config, linkId: link.id });
+          e.stopPropagation();
         }}
       />
     </svg>
-  )
-}
+  );
+};

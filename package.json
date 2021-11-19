@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/izumiz-dev/react-flow-chart.git"
   },
-  "author": "David Revay <daverevay@gmail.com>",
+  "author": "Izumi Zama <zamaizumi@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.1.2",
